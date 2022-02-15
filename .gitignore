@@ -1,0 +1,12 @@
+# Ignore JetBrains files.
+.idea/
+*.iml
+
+# Ignore Visual Studio Code files.
+.vscode
+
+# Helm decrypted secret files.
+*.yml.dec
+
+# Ignore MacOS metadata file
+.DS_Store
