@@ -1,0 +1,11 @@
+version: '2.3'
+services:
+
+  configuration-binding-bug:
+    image: configuration-binding-bug
+    # The container environment is now defined in the pom.xml in the jib-maven-plugin configuration
+#    environment:
+#      - SIMPLE_SETTINGS_SIMPLE=SIMPLE_SETTINGS_SIMPLE from docker-compose.env
+#      - SIMPLE_SETTINGS_CAMELCASE=SIMPLE_SETTINGS_CAMELCASE from docker-compose.env
+#      - KEBABPREFIX_SETTINGS_SIMPLE=KEBABPREFIX_SETTINGS_SIMPLE from docker-compose.env
+#      - KEBABPREFIX_SETTINGS_CAMELCASE=KEBABPREFIX_SETTINGS_CAMELCASE from docker-compose.env

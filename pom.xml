@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <parent>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-parent</artifactId>
+    <version>2.6.3</version>
+    <relativePath/> <!-- lookup parent from repository -->
+  </parent>
+
+  <groupId>com.github.pmoerenhout</groupId>
+  <artifactId>configuration-binding-bug</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <name>configuration-binding-bug</name>
+  <description>Demonstartes the prefix with dash in relaxed binding</description>
+
+  <properties>
+    <java.version>11</java.version>
+    <maven.compiler.source>11</maven.compiler.source>
+    <maven.compiler.target>11</maven.compiler.target>
+    <jib-maven-plugin.version>3.2.0</jib-maven-plugin.version>
+  </properties>
+
+  <dependencies>
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-validation</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>org.projectlombok</groupId>
+      <artifactId>lombok</artifactId>
+      <scope>provided</scope>
+      <optional>true</optional>
+    </dependency>
+
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-test</artifactId>
+      <scope>test</scope>
+    </dependency>
+  </dependencies>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-maven-plugin</artifactId>
+      </plugin>
+      <!-- Docker container-->
+      <plugin>
+        <groupId>com.google.cloud.tools</groupId>
+        <artifactId>jib-maven-plugin</artifactId>
+        <version>${jib-maven-plugin.version}</version>
+      </plugin>
+    </plugins>
+  </build>
+
+  <profiles>
+    <profile>
+      <id>jib</id>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>com.google.cloud.tools</groupId>
+            <artifactId>jib-maven-plugin</artifactId>
+            <configuration>
+              <from>
+                <image>gcr.io/distroless/java-debian11:11</image>
+              </from>
+              <to>
+                <image>configuration-binding-bug</image>
+                <tags>${project.version}</tags>
+              </to>
+              <container>
+                <environment>
+                  <SIMPLE_SETTINGS_SIMPLE>SIMPLE_SETTINGS_SIMPLE from Jib Docker plugin configuration</SIMPLE_SETTINGS_SIMPLE>
+                  <SIMPLE_SETTINGS_CAMELCASE>SIMPLE_SETTINGS_CAMELCASE from Jib Docker plugin configuration</SIMPLE_SETTINGS_CAMELCASE>
+                  <KEBABPREFIX_SETTINGS_SIMPLE>KEBABPREFIX_SETTINGS_SIMPLE from Jib Docker plugin configuration</KEBABPREFIX_SETTINGS_SIMPLE>
+                  <KEBABPREFIX_SETTINGS_CAMELCASE>KEBABPREFIX_SETTINGS_CAMELCASE from Jib Docker plugin configuration</KEBABPREFIX_SETTINGS_CAMELCASE>
+                </environment>
+              </container>
+            </configuration>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+  </profiles>
+
+  <!--	<repositories>-->
+  <!--		<repository>-->
+  <!--			<id>spring-milestones</id>-->
+  <!--			<name>Spring Milestones</name>-->
+  <!--			<url>https://repo.spring.io/milestone</url>-->
+  <!--			<snapshots>-->
+  <!--				<enabled>false</enabled>-->
+  <!--			</snapshots>-->
+  <!--		</repository>-->
+  <!--		<repository>-->
+  <!--			<id>spring-snapshots</id>-->
+  <!--			<name>Spring Snapshots</name>-->
+  <!--			<url>https://repo.spring.io/snapshot</url>-->
+  <!--			<releases>-->
+  <!--				<enabled>false</enabled>-->
+  <!--			</releases>-->
+  <!--		</repository>-->
+  <!--	</repositories>-->
+  <!--	<pluginRepositories>-->
+  <!--		<pluginRepository>-->
+  <!--			<id>spring-milestones</id>-->
+  <!--			<name>Spring Milestones</name>-->
+  <!--			<url>https://repo.spring.io/milestone</url>-->
+  <!--			<snapshots>-->
+  <!--				<enabled>false</enabled>-->
+  <!--			</snapshots>-->
+  <!--		</pluginRepository>-->
+  <!--		<pluginRepository>-->
+  <!--			<id>spring-snapshots</id>-->
+  <!--			<name>Spring Snapshots</name>-->
+  <!--			<url>https://repo.spring.io/snapshot</url>-->
+  <!--			<releases>-->
+  <!--				<enabled>false</enabled>-->
+  <!--			</releases>-->
+  <!--		</pluginRepository>-->
+  <!--	</pluginRepositories>-->
+
+</project>
